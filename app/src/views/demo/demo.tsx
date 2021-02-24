@@ -3,6 +3,8 @@ import { Button, Input, Spin, Card } from 'antd'
 
 import { withStore } from '@/src/components'
 
+import { crawlerYuanjisong } from '@/utils/crawler/yuanjisong'
+
 interface DemoProps extends PageProps, StoreProps {
   count: StoreStates['count']
   countAlias: StoreStates['count']
@@ -36,8 +38,9 @@ export default class Demo extends React.Component<DemoProps, DemoState> {
     super(props)
   }
 
-  componentDidMount(): void {
-    console.log(this)
+  async componentDidMount(): Promise<void> {
+    const jobs: any = await crawlerYuanjisong()
+    console.log('jobs', jobs)
   }
 
   render(): JSX.Element {
